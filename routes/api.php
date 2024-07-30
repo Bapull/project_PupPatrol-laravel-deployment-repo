@@ -21,14 +21,18 @@ Route::get('questions', [QuestionController::class, 'index']);
 Route::get('answers/{answer}',[AnswerController::class, 'show']);
 Route::get('informations/{information}', [InformationController::class, 'show']);
 
-Route::middleware('auth:api')->post('answers',[AnswerController::class, 'store']);
-Route::middleware('auth:api')->post('informations', [InformationController::class, 'store']);
+Route::middleware('auth:api')->group(function () {
+    Route::post('answers',[AnswerController::class, 'store']);
+    Route::post('informations', [InformationController::class, 'store']);
+    
+    Route::put('answers/{answer}',[AnswerController::class,'update']);
+    Route::put('informations/{information}',[InformationController::class,'update']);
+    
+    Route::patch('answers/{answer}',[AnswerController::class,'update']);
+    Route::patch('informations/{information}',[InformationController::class,'update']);
+    
+    Route::delete('answers/{answer}',[AnswerController::class, 'destroy']);
+    Route::delete('informations/{information}', [InformationController::class, 'destroy']);
+    
+});
 
-Route::middleware('auth:api')->put('answers/{answer}',[AnswerController::class,'update']);
-Route::middleware('auth:api')->put('informations/{information}',[InformationController::class,'update']);
-
-Route::middleware('auth:api')->patch('answers/{answer}',[AnswerController::class,'update']);
-Route::middleware('auth:api')->patch('informations/{information}',[InformationController::class,'update']);
-
-Route::middleware('auth:api')->delete('answers/{answer}',[AnswerController::class, 'destroy']);
-Route::middleware('auth:api')->delete('informations/{information}', [InformationController::class, 'destroy']);
