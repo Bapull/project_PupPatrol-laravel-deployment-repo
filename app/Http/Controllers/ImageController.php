@@ -25,7 +25,7 @@ class ImageController extends Controller
                 return response()->json(['data'=>'fail'],400);
             };
             // 성공하면 나중에 접근할 수 있도록, 파일 이름을 응답으로 줍니다.
-            return response()->json(['data' => "/{$fileName}"], 201);
+            return response()->json(['data' => "{$fileName}"], 201);
         } catch (\Exception $e) {
             return response()->json(['data' => 'error', 'message' => $e->getMessage()], 500);
         }
