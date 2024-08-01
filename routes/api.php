@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -36,3 +37,6 @@ Route::middleware('auth:api')->group(function () {
     
 });
 
+Route::post('/imageUpload',[ImageController::class,'upload']);
+Route::get('/imageDownload',[ImageController::class,'download']);
+Route::delete('/imageDelete',[ImageController::class,'destroy']);
