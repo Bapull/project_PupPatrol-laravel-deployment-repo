@@ -18,11 +18,11 @@ class DogFactory extends Factory
     {
         
         return [
-            'name' => 'puppy',
-            'breed' => 'golden retriever',
-            'birth_date' => '2024-08-01',
-            'owner_email' => 'bapull@member.com',
-            'photo_url' => 'pup-patrol-user-dog/golden.jpg'
+            'dog_name' => 'puppy',
+            'dog_breed' => 'golden retriever',
+            'dog_birth_date' => '2024-08-01',
+            'dog_owner_email' => 'bapull@member.com',
+            'dog_photo_url' => 'pup-patrol-user-dog/golden.jpg'
         ];
     }
 }

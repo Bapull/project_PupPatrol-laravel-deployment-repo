@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('dogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('breed');
-            $table->date('birth_date');
-            $table->string('owner_email');
-            $table->string('photo_url');
+            $table->string('dog_name');
+            $table->string('dog_breed');
+            $table->date('dog_birth_date');
+            $table->string('dog_owner_email');
+            $table->string('dog_photo_url');
             $table->timestamps();
         });
     }

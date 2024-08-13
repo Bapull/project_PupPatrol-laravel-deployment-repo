@@ -11,7 +11,7 @@ class StoreDogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreDogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'dogName'=> ["required","string"],
+            'dogBreed'=> ["required","string"],
+            'dogBirthDate'=> ["required","date"],
+            'dogPhotoUrl'=> ["required","string"],
         ];
+    }
+    protected function prepareForValidation(){
+        $this->merge([
+            'dog_name'=>$this->dogName,
+            'dog_breed'=>$this->dogBreed,
+            'dog_birth_date'=>$this->dogBirthDate,
+            'dog_owner_email'=>$this->user()->email,
+            'dog_photo_url'=>$this->dogPhotoUrl,
+        ]);
     }
 }
