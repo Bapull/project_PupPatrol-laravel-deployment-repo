@@ -10,17 +10,18 @@ use App\Http\Requests\StoreDogRequest;
 use App\Http\Requests\UpdateDogRequest;
 use Illuminate\Http\Request;
 
+
 class DogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+   
+    public function index()
     {
         //
-        $userEmail = $request->user()->email;
-        $dogs = new DogCollection(Dog::where('dog_owner_email','=',$userEmail));
-        return response()->json(['data'=>$dogs],200);
+        
+        return response()->json(['data'=>new DogCollection(Dog::all())]);
     }
 
     /**
@@ -47,10 +48,7 @@ class DogController extends Controller
     public function show(Request $request,Dog $dog)
     {
         //
-        $userEmail = $request->user()->email;
-        $data = Dog::where('dog_owner_email','=',$userEmail,'and','id','=',$dog->id);
-        
-        return response()->json(['data'=>new DogResource($data)],200);
+        return response()->json(['data'=>new DogResource(Dog::findOrFail($dog->id))],200);
     }
 
     /**

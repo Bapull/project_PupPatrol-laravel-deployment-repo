@@ -21,7 +21,9 @@ Route::get('answers/{answer}',[AnswerController::class, 'show']);
 Route::get('informations/{information}', [InformationController::class, 'show']);
 Route::get('/imageDownload',[ImageController::class,'download']);
 
-Route::apiResource('dogs',DogController::class)->middleware('auth:sanctum');
+
+Route::apiResource('dogs',DogController::class);
+
 
 Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function () {
     Route::post('answers',[AnswerController::class, 'store']);
@@ -38,6 +40,8 @@ Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function 
     
     Route::post('/imageUpload',[ImageController::class,'upload']);
     Route::delete('/imageDelete',[ImageController::class,'destroy']);
+
+    
 });
 
 
