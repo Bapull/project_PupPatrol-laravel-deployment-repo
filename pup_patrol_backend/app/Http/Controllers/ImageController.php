@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -20,7 +21,11 @@ class ImageController extends Controller
             $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
             // 파일 폴더 설정
             $folder = $request->header('folder');
-            
+            if($folder == 'pup-patrol-information-image'){
+                if(Auth::user()->role != 'admin' ){
+                    return response()->json(['data' => 'unauthorized'],401);
+                }
+            }
             // 파일 저장
             if(!Storage::disk('s3')->put("/{$folder}/{$fileName}", file_get_contents($request->file('image')))){
                 // 실패했을때 실패했다고 알려줌
@@ -59,6 +64,11 @@ class ImageController extends Controller
 
             $fileName = $request->query('fileName');
             $folder = $request->header('folder');
+            if($folder == 'pup-patrol-information-image'){
+                if(Auth::user()->role != 'admin' ){
+                    return response()->json(['data' => 'unauthorized'],401);
+                }
+            }
             // 이미지 삭제
             Storage::disk('s3')->delete("{$folder}/{$fileName}");
 
