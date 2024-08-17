@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDogRequest;
 use App\Http\Requests\UpdateDogRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class DogController extends Controller
@@ -20,8 +21,8 @@ class DogController extends Controller
     public function index()
     {
         //
-        
-        return response()->json(['data'=>new DogCollection(Dog::all())]);
+        $data = Dog::where('dog_owner_email',Auth::user()->email)->get();
+        return response()->json(['data'=>new DogCollection($data)]);
     }
 
     /**
@@ -48,7 +49,14 @@ class DogController extends Controller
     public function show(Request $request,Dog $dog)
     {
         //
-        return response()->json(['data'=>new DogResource(Dog::findOrFail($dog->id))],200);
+        $userEmail = Auth::user()->email;
+        $data = Dog::findOrFail($dog->id);
+        if($data && $data->dog_owner_email === $userEmail){
+            return response()->json(['data'=>new DogResource(Dog::findOrFail($dog->id))],200);
+        }else{
+            return response()->json(['data'=>'unauthorized'],401);
+        }
+        
     }
 
     /**
@@ -66,7 +74,14 @@ class DogController extends Controller
     public function update(UpdateDogRequest $request, Dog $dog)
     {
         //
-        return response()->json(['data' => $dog->update($request->all())],200);
+        $userEmail = Auth::user()->email;
+        $data = Dog::findOrFail($dog->id);
+        if($data && $data->dog_owner_email === $userEmail){
+            return response()->json(['data' => $dog->update($request->all())],200);
+        }else{
+            return response()->json(['data'=>'unauthorized'],401);
+        }
+        
     }
 
     /**
@@ -75,12 +90,14 @@ class DogController extends Controller
     public function destroy(Request $request, Dog $dog)
     {
         //
-        $target = Dog::findOrFail($dog->id);
-        if($request->user()->email == $target->dog_owner_email){
+        $userEmail = Auth::user()->email;
+        $data = Dog::findOrFail($dog->id);
+        if($data && $data->dog_owner_email === $userEmail){
             return response()->json(['data'=>$dog->delete()],200);
         }else{
-            return response()->json(['data'=>'Unauthorized'],401);
+            return response()->json(['data'=>'unauthorized'],401);
         }
+        
         
     }
 }
