@@ -23,67 +23,67 @@ class UpdateAnswerRequest extends FormRequest
     {
         if ($this->method() == "PUT") {
             return [
-                "answerIsBig"=> ["required","boolean"],
-                "answerIsFluff"=> ["required","boolean"],
-                "answerIsWalking"=> ["required","boolean"],
-                "answerIsSmart"=> ["required","boolean"],
-                "answerIsShyness"=> ["required","boolean"],
-                "answerIsBiting"=> ["required","boolean"],
-                "answerIsNuisance"=> ["required","boolean"],
-                "answerIsIndependent"=>["required","boolean"],
+                "answerIsBig"=> ["required","integer"],
+                "answerIsFluff"=> ["required","integer"],
+                "answerIsWalking"=> ["required","integer"],
+                "answerIsSmart"=> ["required","integer"],
+                "answerIsShyness"=> ["required","integer"],
+                "answerIsBiting"=> ["required","integer"],
+                "answerIsNuisance"=> ["required","integer"],
+                "answerIsIndependent"=>["required","integer"],
             ];
         }else{
             return [
-                "answerIsBig"=> ["sometimes" ,"required","boolean"],
-                "answerIsFluff"=> ["sometimes" ,"required","boolean"],
-                "answerIsWalking"=> ["sometimes" ,"required","boolean"],
-                "answerIsSmart"=> ["sometimes" ,"required","boolean"],
-                "answerIsShyness"=> ["sometimes" ,"required","boolean"],
-                "answerIsBiting"=> ["sometimes" ,"required","boolean"],
-                "answerIsNuisance"=> ["sometimes" ,"required","boolean"],
-                "answerIsIndependent"=>["sometimes" ,"required","boolean"],
+                "answerIsBig"=> ["sometimes" ,"required","integer"],
+                "answerIsFluff"=> ["sometimes" ,"required","integer"],
+                "answerIsWalking"=> ["sometimes" ,"required","integer"],
+                "answerIsSmart"=> ["sometimes" ,"required","integer"],
+                "answerIsShyness"=> ["sometimes" ,"required","integer"],
+                "answerIsBiting"=> ["sometimes" ,"required","integer"],
+                "answerIsNuisance"=> ["sometimes" ,"required","integer"],
+                "answerIsIndependent"=>["sometimes" ,"required","integer"],
             ];
         }
     }
     protected function prepareForValidation(){
         if($this->answerIsBig){
             $this->merge([
-                "answer_is_big"=> $this->answerIsBig,
+                "answer_is_big"=> $this->answerIsBig == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsFluff){
             $this->merge([
-                "answer_is_fluff"=> $this->answerIsFluff,
+                "answer_is_fluff"=> $this->answerIsFluff == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsWalking){
             $this->merge([
-                "answer_is_walking"=>$this->answerIsWalking,
+                "answer_is_walking"=> $this->answerIsWalking == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsSmart){
             $this->merge([
-                "answer_is_smart"=> $this->answerIsSmart,
+                "answer_is_smart"=> $this->answerIsSmart == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsShyness){
             $this->merge([
-                "answer_is_shyness"=> $this->answerIsShyness,
+                "answer_is_shyness"=> $this->answerIsShyness == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsBiting){
             $this->merge([
-                "answer_is_biting"=> $this->answerIsBiting,
+                "answer_is_biting"=> $this->answerIsBiting == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsNuisance){
             $this->merge([
-                "answer_is_nuisance"=> $this->answerIsNuisance,
+                "answer_is_nuisance"=> $this->answerIsNuisance == '1' ? 1:0,
             ]);    
         }
         if($this->answerIsIndependent){
             $this->merge([
-                "answer_is_independent"=> $this->answerIsIndependent,
+                "answer_is_independent"=> $this->answerIsIndependent == '1' ? 1:0,
             ]);    
         }
     }

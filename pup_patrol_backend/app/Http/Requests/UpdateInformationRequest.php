@@ -32,7 +32,7 @@ class UpdateInformationRequest extends FormRequest
                 'informationDogText'=>["required","string"],
                 'informationDogGeneticillness'=>["required","string"],
                 'informationCaution'=>["required","string"],
-                'informationImageUrl'=>["required","string"]
+                'informationImageName'=>["required","string"]
             ];
            }else{
             return [
@@ -45,7 +45,7 @@ class UpdateInformationRequest extends FormRequest
                 'informationDogText'=>[ "sometimes" ,"required","string"],
                 'informationDogGeneticillness'=>[ "sometimes" ,"required","string"],
                 'informationCaution'=>[ "sometimes" ,"required","string"],
-                'informationImageUrl'=>[ "sometimes" ,"required","string"]
+                'informationImageName'=>[ "sometimes" ,"required","string"]
             ];
            }
     }
@@ -97,7 +97,7 @@ class UpdateInformationRequest extends FormRequest
         }
         if($this->informationImageUrl){
             $this->merge([
-                'information_image_url'=> $this->informationImageUrl,
+                'information_image_name'=> $this->informationImageName,
             ]);
         }
     }

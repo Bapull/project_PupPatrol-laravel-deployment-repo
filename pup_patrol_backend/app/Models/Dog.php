@@ -14,7 +14,7 @@ class Dog extends Model
         'dog_breed',
         'dog_birth_date',
         'dog_owner_email',
-        'dog_photo_url',
+        'dog_photo_name',
     ];
 
     public function owner(){
