@@ -35,14 +35,14 @@ class StoreAnswerRequest extends FormRequest
 
     protected function prepareForValidation(){
         $this->merge([
-            "answer_is_big"=> $this->answerIsBig,
-            "answer_is_fluff"=> $this->answerIsFluff,
-            "answer_is_walking"=> $this->answerIsWalking,
-            "answer_is_smart"=> $this->answerIsSmart,
-            "answer_is_shyness"=> $this->answerIsShyness,
-            "answer_is_biting"=> $this->answerIsBiting,
-            "answer_is_nuisance"=> $this->answerIsNuisance,
-            "answer_is_independent"=> $this->answerIsIndependent,
+            "answer_is_big"=> $this->answerIsBig == '1' ? 1:0,
+            "answer_is_fluff"=> $this->answerIsFluff == '1' ? 1:0,
+            "answer_is_walking"=> $this->answerIsWalking == '1' ? 1:0,
+            "answer_is_smart"=> $this->answerIsSmart == '1' ? 1:0,
+            "answer_is_shyness"=> $this->answerIsShyness == '1' ? 1:0,
+            "answer_is_biting"=> $this->answerIsBiting == '1' ? 1:0,
+            "answer_is_nuisance"=> $this->answerIsNuisance == '1' ? 1:0,
+            "answer_is_independent"=> $this->answerIsIndependent == '1' ? 1:0,
         ]);
     }
 }

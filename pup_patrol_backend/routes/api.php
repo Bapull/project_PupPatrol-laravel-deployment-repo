@@ -25,7 +25,7 @@ Route::post('/imageUpload',[ImageController::class,'upload']);
 Route::delete('/imageDelete',[ImageController::class,'destroy']);
 
 
-Route::apiResource('dogs',DogController::class);
+Route::apiResource('/dogs',DogController::class);
 
 
 Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function () {

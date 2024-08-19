@@ -22,7 +22,7 @@ class DogFactory extends Factory
             'dog_breed' => 'golden retriever',
             'dog_birth_date' => '2024-08-01',
             'dog_owner_email' => 'bapull@member.com',
-            'dog_photo_name' => '1723735002_golden.jpg'
+            'dog_photo_name' => '1724077101_golden.jpg '
         ];
     }
 }
