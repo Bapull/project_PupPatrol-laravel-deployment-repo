@@ -33,14 +33,14 @@ class UpdateDogRequest extends FormRequest
                 'dogName'=> ["required","string"],
                 'dogBreed'=> ["required","string"],
                 'dogBirthDate'=> ["required","date"],
-                'dogPhotoUrl'=> ["required","string"],
+                'dogPhotoName'=> ["required","string"],
             ];
         }else{
             return [
                 'dogName'=> ["sometimes" ,"required","string"],
                 'dogBreed'=> ["sometimes" ,"required","string"],
                 'dogBirthDate'=> ["sometimes" ,"required","date"],
-                'dogPhotoUrl'=> ["sometimes" ,"required","string"],
+                'dogPhotoName'=> ["sometimes" ,"required","string"],
             ];
         }
     }
@@ -63,7 +63,7 @@ class UpdateDogRequest extends FormRequest
         
         if($this->dogPhotoUrl){
             $this->merge([
-                'dog_photo_url'=>$this->dogPhotoUrl
+                'dog_photo_name'=>$this->dogPhotoName
             ]);
         }
 

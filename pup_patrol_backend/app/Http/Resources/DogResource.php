@@ -20,7 +20,7 @@ class DogResource extends JsonResource
             'dogBreed'=>$this->dog_breed,
             'dogBirthDate'=>$this->dog_birth_date,
             'dogOwnerEmail'=>$this->dog_owner_email,
-            'dogPhotoUrl'=>$this->dog_photo_url,
+            'dogPhotoName'=>$this->dog_photo_name,
         ];
     }
 }

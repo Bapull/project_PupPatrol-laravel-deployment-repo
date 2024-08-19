@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('dog_breed');
             $table->date('dog_birth_date');
             $table->string('dog_owner_email');
-            $table->string('dog_photo_url');
+            $table->string('dog_photo_name');
             $table->timestamps();
         });
     }

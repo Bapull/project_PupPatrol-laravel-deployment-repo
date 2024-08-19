@@ -31,7 +31,7 @@ class StoreInformationRequest extends FormRequest
             'informationDogText'=>["required","string"],
             'informationDogGeneticillness'=>["required","string"],
             'informationCaution'=>["required","string"],
-            'informationImageUrl'=>["required","string"]
+            'informationImageName'=>["required","string"]
         ];
     }
     protected function prepareForValidation(){
@@ -45,7 +45,7 @@ class StoreInformationRequest extends FormRequest
             'information_dog_text'=>$this->informationDogText,
             'information_dog_geneticillness'=>$this->informationDogGeneticillness,
             'information_caution'=>$this->informationCaution,
-            'information_image_url'=> $this->informationImageUrl,
+            'information_image_name'=> $this->informationImageName,
         ]);
     }
 }

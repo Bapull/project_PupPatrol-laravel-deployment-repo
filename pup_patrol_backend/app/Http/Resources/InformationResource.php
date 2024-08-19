@@ -25,7 +25,7 @@ class InformationResource extends JsonResource
             'informationDogText'=>$this->information_dog_text,
             'informationDogGeneticillness'=>$this->information_dog_geneticillness,
             'informationCaution'=>$this->information_caution,
-            'informationImageUrl'=> $this->information_image_url
+            'informationImageName'=> $this->information_image_name
         ];
     }
 }

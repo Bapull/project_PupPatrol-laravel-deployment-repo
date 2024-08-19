@@ -18,6 +18,6 @@ class Information extends Model
         'information_dog_text',
         'information_dog_geneticillness',
         'information_caution',
-        'information_image_url'
+        'information_image_name'
     ];
 }

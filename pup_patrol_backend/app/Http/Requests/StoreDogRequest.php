@@ -25,7 +25,7 @@ class StoreDogRequest extends FormRequest
             'dogName'=> ["required","string"],
             'dogBreed'=> ["required","string"],
             'dogBirthDate'=> ["required","date"],
-            'dogPhotoUrl'=> ["required","string"],
+            'dogPhotoName'=> ["required","string"],
         ];
     }
     protected function prepareForValidation(){
@@ -34,7 +34,7 @@ class StoreDogRequest extends FormRequest
             'dog_breed'=>$this->dogBreed,
             'dog_birth_date'=>$this->dogBirthDate,
             'dog_owner_email'=>$this->user()->email,
-            'dog_photo_url'=>$this->dogPhotoUrl,
+            'dog_photo_name'=>$this->dogPhotoName,
         ]);
     }
 }

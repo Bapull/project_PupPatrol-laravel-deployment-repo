@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('information_dog_text');
             $table->string('information_dog_geneticillness');
             $table->string('information_caution');
-            $table->string('information_image_url');
+            $table->string('information_image_name');
             $table->timestamps();
         });
     }
