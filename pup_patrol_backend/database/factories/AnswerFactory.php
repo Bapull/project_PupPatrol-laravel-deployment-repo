@@ -14,7 +14,7 @@ class AnswerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public $bool = [true, false];
+    public $bool = [0, 1];
     public function definition(): array
     {
         $big = array_rand($this->bool);

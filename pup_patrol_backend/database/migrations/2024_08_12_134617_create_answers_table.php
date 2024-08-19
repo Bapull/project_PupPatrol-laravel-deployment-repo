@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->boolean('answer_is_big');
-            $table->boolean('answer_is_fluff');
-            $table->boolean('answer_is_walking');
-            $table->boolean('answer_is_smart');
-            $table->boolean('answer_is_shyness');
-            $table->boolean('answer_is_biting');
-            $table->boolean('answer_is_nuisance');
-            $table->boolean('answer_is_independent');
+            $table->integer('answer_is_big');
+            $table->integer('answer_is_fluff');
+            $table->integer('answer_is_walking');
+            $table->integer('answer_is_smart');
+            $table->integer('answer_is_shyness');
+            $table->integer('answer_is_biting');
+            $table->integer('answer_is_nuisance');
+            $table->integer('answer_is_independent');
             $table->timestamps();
         });
     }

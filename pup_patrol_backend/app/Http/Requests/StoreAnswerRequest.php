@@ -22,14 +22,14 @@ class StoreAnswerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "answerIsBig"=> ["required","boolean"],
-            "answerIsFluff"=> ["required","boolean"],
-            "answerIsWalking"=> ["required","boolean"],
-            "answerIsSmart"=> ["required","boolean"],
-            "answerIsShyness"=> ["required","boolean"],
-            "answerIsBiting"=> ["required","boolean"],
-            "answerIsNuisance"=> ["required","boolean"],
-            "answerIsIndependent"=>["required","boolean"],
+            "answerIsBig"=> ["required","integer"],
+            "answerIsFluff"=> ["required","integer"],
+            "answerIsWalking"=> ["required","integer"],
+            "answerIsSmart"=> ["required","integer"],
+            "answerIsShyness"=> ["required","integer"],
+            "answerIsBiting"=> ["required","integer"],
+            "answerIsNuisance"=> ["required","integer"],
+            "answerIsIndependent"=>["required","integer"],
         ];
     }
 
@@ -37,7 +37,7 @@ class StoreAnswerRequest extends FormRequest
         $this->merge([
             "answer_is_big"=> $this->answerIsBig,
             "answer_is_fluff"=> $this->answerIsFluff,
-            "answer_is_walking"=>$this->answerIsWalking,
+            "answer_is_walking"=> $this->answerIsWalking,
             "answer_is_smart"=> $this->answerIsSmart,
             "answer_is_shyness"=> $this->answerIsShyness,
             "answer_is_biting"=> $this->answerIsBiting,
