@@ -74,6 +74,7 @@ class DogController extends Controller
     public function update(UpdateDogRequest $request, Dog $dog)
     {
         //
+        
         $userEmail = Auth::user()->email;
         $data = Dog::findOrFail($dog->id);
         if($data && $data->dog_owner_email === $userEmail){
