@@ -12,12 +12,7 @@ class UpdateDogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $dog = Dog::findOrFail($this->id);
-        if($this->user()->email == $dog->dog_owner_email){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
         
     }
 
@@ -61,7 +56,7 @@ class UpdateDogRequest extends FormRequest
             ]);
         }
         
-        if($this->dogPhotoUrl){
+        if($this->dogPhotoName){
             $this->merge([
                 'dog_photo_name'=>$this->dogPhotoName
             ]);
