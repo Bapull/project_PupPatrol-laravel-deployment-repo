@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DogController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ Route::delete('/imageDelete',[ImageController::class,'destroy']);
 
 
 Route::apiResource('/dogs',DogController::class);
-
+Route::apiResource('posts',PostController::class);
 
 Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function () {
     Route::post('answers',[AnswerController::class, 'store']);
