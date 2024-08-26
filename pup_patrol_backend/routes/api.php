@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DogController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Http\Request;
@@ -26,7 +28,12 @@ Route::delete('/imageDelete',[ImageController::class,'destroy']);
 
 
 Route::apiResource('/dogs',DogController::class);
+Route::apiResource('posts',PostController::class);
 
+Route::get('/comments/{postId}',[CommentController::class, 'index']);
+Route::put('/comments/{comment}',[CommentController::class,'update']);
+Route::patch('/comments/{comment}',[CommentController::class,'update']);
+Route::delete('/comments/{comment}',[CommentController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function () {
     Route::post('answers',[AnswerController::class, 'store']);
@@ -41,6 +48,7 @@ Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function 
     Route::delete('answers/{answer}',[AnswerController::class, 'destroy']);
     Route::delete('informations/{information}', [InformationController::class, 'destroy']);
     
+    Route::post('/comments',[CommentController::class,'store']);
     
     
 });
