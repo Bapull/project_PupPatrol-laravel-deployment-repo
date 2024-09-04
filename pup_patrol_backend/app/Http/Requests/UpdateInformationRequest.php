@@ -95,7 +95,7 @@ class UpdateInformationRequest extends FormRequest
                 'information_caution'=>$this->informationCaution,
             ]);
         }
-        if($this->informationImageUrl){
+        if($this->informationImageName){
             $this->merge([
                 'information_image_name'=> $this->informationImageName,
             ]);
