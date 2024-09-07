@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'bapull',
             'email' => 'bapull@member.com',
-            'role' => 'admin'
+            'role' => 'admin',
+            'profile_picture' => '밥풀프로필.jpg',
+            'birthday' => '2024-09-07'
         ]);
         
         $this->call(AnswerSeeder::class);

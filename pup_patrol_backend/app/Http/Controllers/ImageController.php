@@ -14,7 +14,7 @@ class ImageController extends Controller
         try {
             // 파일 검증
             $request->validate([
-                'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+                'image' => 'required|image|mimes:jpg,jpeg,png,gif',
             ]);
 
             // 파일 이름 설정
