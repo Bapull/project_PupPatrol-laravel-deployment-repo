@@ -10,9 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Handle an incoming authentication request.
-     */
+    /** 
+ * @OA\post(
+ *     path="/login",
+ *     tags={"user"},
+ *     summary="로그인",
+ *     description="로그인",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="email", type="string", description="이메일", example="bapull@member.com" ),
+ *                 @OA\Property(property="password", type="string", description="비밀번호", example="password" )
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(response="200", description="로그인이 성공적으로 완료됨")
+ * )
+ **/
     public function store(LoginRequest $request): Response
     {
         $request->authenticate();
@@ -22,9 +37,15 @@ class AuthenticatedSessionController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+  /** 
+ * @OA\post(
+ *     path="/logout",
+ *     tags={"user"},
+ *     summary="로그아웃",
+ *     description="로그아웃",
+ *     @OA\Response(response="200", description="로그아웃이 성공적으로 완료됨")
+ * )
+ **/
     public function destroy(Request $request): Response
     {
         Auth::guard('web')->logout();
