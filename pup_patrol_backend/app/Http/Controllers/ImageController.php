@@ -9,7 +9,29 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    //
+    /** 
+ * @OA\post(
+ *     path="/api/imageUpload",
+ *     tags={"image"},
+ *     summary="s3버킷에 이미지 추가",
+ *     description="s3버킷에 이미지를 추가하고 추가된 파일명을 반환함",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="image"
+ *         )
+ *     ),
+ *     @OA\Parameter(
+*         name="folder",
+*          description="이미지가 저장될 폴더명",
+*         in="header",
+*         required=true,
+*         example="pup-patrol-information-image",
+*     @OA\Schema(type="sting")
+* ),
+ *     @OA\Response(response="201", description="이미지가 s3버킷에 업로드 됨"),
+*     @OA\Response(response="401", description="권한 없음")
+ * )
+ **/
     public function upload(Request $request){
         try {
             // 파일 검증
@@ -37,7 +59,31 @@ class ImageController extends Controller
             return response()->json(['data' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-
+/** 
+ * @OA\get(
+ *     path="/api/imageDownload",
+ *     tags={"image"},
+ *     summary="파일이름과 폴더이름을 사용해서 이미지 url을 받아옴",
+ *     description="파일이름은 쿼리로 폴더이름은 헤더에서 받음",
+ *       @OA\Parameter(
+*     name="fileName",
+*     description="파일명",
+*     in="query",
+*     required=true,
+*     example="172394_프로필사진.jpg",
+*     @OA\Schema(type="sting")
+* ),
+*     @OA\Parameter(
+*     name="folder",
+*     description="폴더명",
+*     in="header",
+*     required=true,
+*     example="pup-patrol-information-image",
+*     @OA\Schema(type="sting")
+* ),
+ *     @OA\Response(response="200", description="success")
+ * )
+ **/
     public function download(Request $request){
         // 파일 이름 검증
         $request->validate([
@@ -54,7 +100,32 @@ class ImageController extends Controller
 
         return response()->json(['data' => $url], 200);
     }
-
+/** 
+ * @OA\delete(
+ *     path="/api/imageDelete",
+ *     tags={"image"},
+ *     summary="s3버킷에 이미지 삭제",
+ *     description="s3버킷에 이미지를 삭제함",
+ *       @OA\Parameter(
+*     name="fileName",
+*     description="파일명",
+*     in="query",
+*     required=true,
+*     example="172394_프로필사진.jpg",
+*     @OA\Schema(type="sting")
+* ),
+*     @OA\Parameter(
+*     name="folder",
+*     description="폴더명",
+*     in="header",
+*     required=true,
+*     example="pup-patrol-information-image",
+*     @OA\Schema(type="sting")
+* ),
+ *     @OA\Response(response="201", description="이미지가 s3버킷에서 삭제됨"),
+*     @OA\Response(response="401", description="권한 없음")
+ * )
+ **/
     public function destroy(Request $request){
         try {
             // 파일 이름 검증
