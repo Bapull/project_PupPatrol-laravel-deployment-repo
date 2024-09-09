@@ -33,6 +33,7 @@ Route::apiResource('posts',PostController::class);
 
 Route::get('/comments/{postId}',[CommentController::class, 'index']);
 Route::put('/comments/{comment}',[CommentController::class,'update']);
+Route::post('/comments',[CommentController::class,'store']);
 Route::patch('/comments/{comment}',[CommentController::class,'update']);
 Route::delete('/comments/{comment}',[CommentController::class, 'destroy']);
 
@@ -49,7 +50,7 @@ Route::middleware('auth:sanctum')->middleware([IsAdmin::class])->group(function 
     Route::delete('answers/{answer}',[AnswerController::class, 'destroy']);
     Route::delete('informations/{information}', [InformationController::class, 'destroy']);
     
-    Route::post('/comments',[CommentController::class,'store']);
+    
     
     
 });

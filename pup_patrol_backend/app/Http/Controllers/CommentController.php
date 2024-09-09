@@ -96,9 +96,33 @@ class CommentController extends Controller
         return response()->json(['data'=>new CommentResource($data)]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /** 
+ * @OA\patch(
+ *     path="/api/comments/{comment}",
+ *     tags={"comment"},
+ *     summary="comment 데이터 수정",
+ *     description="로그인 한 정보와 댓글 작성자가 같다면 comment 데이터를 수정함 ",
+ *     @OA\Parameter(
+ *          name="comment",
+ *          description="comment의 아이디",
+ *          in="path",
+ *          required=true,
+ *          example="1",
+ *          @OA\Schema(type="string")
+ *     ),
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *          mediaType="application/json",
+ *          @OA\Schema(
+ *                 @OA\Property(property="commentPostId", type="int", description="댓글이 달린 게시글 id", example="1" ),
+ *                 @OA\Property(property="commentContent", type="string", description="댓글 내용", example="안녕하세요" )
+ *          )
+ *      )
+ * ),
+ *     @OA\Response(response="200", description="수정이 된 경우"),
+ *     @OA\Response(response="401", description="로그인된 정보와 댓글 작성자가 일치하지 않을 경우")
+ * )
+ **/
     public function edit(Comment $comment)
     {
         //

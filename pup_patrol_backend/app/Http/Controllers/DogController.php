@@ -101,9 +101,35 @@ class DogController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /** 
+ * @OA\patch(
+ *     path="/api/dogs/{dog}",
+ *     tags={"dog"},
+ *     summary="반려견 데이터 수정",
+ *     description="파라미터로 넘어온 id가 로그인 한 사람이 등록한 반려견이 맞다면 반려견의 데이터를 수정함 ",
+ *     @OA\Parameter(
+ *          name="dag",
+ *          description="반려견의 아이디",
+ *          in="path",
+ *          required=true,
+ *          example="1",
+ *          @OA\Schema(type="string")
+ *     ),
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *          mediaType="application/json",
+ *          @OA\Schema(
+ *              @OA\Property(property="dogName", type="string", description="반려견 이름", example="뽀삐" ),
+ *              @OA\Property(property="dogBreed", type="string", description="반려견의 종", example="푸들" ),
+ *              @OA\Property(property="dogBirthDate", type="date", description="반려견의 생일", example="2024-3-2" ),
+ *              @OA\Property(property="dogPhotoName", type="string", description="api/imageUpload 의 응답으로 나온 파일명", example="172834_뽀삐사진.jpg" )
+ *          )
+ *      )
+ * ),
+ *     @OA\Response(response="200", description="수정이 된 경우"),
+  *     @OA\Response(response="401", description="본인의 반려견이 아님")
+ * )
+ **/
     public function edit(Dog $dog)
     {
         //
