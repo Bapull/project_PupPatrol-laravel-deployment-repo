@@ -82,9 +82,33 @@ class PostController extends Controller
         return response()->json(['data'=>new PostResource(Post::findOrFail($post->id))],200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /** 
+ * @OA\patch(
+ *     path="/api/posts/{post}",
+ *     tags={"post"},
+ *     summary="post데이터 수정",
+ *     description="로그인 한 정보와 글 작성자가 같다면 post데이터를 수정함 ",
+ *     @OA\Parameter(
+ *          name="post",
+ *          description="post의 아이디",
+ *          in="path",
+ *          required=true,
+ *          example="1",
+ *          @OA\Schema(type="string")
+ *     ),
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *          mediaType="application/json",
+ *          @OA\Schema(
+ *                 @OA\Property(property="postTitle", type="string", description="게시글 제목", example="title" ),
+ *                 @OA\Property(property="postContent", type="string", description="게시글 내용", example="[\'ddd\',\'(IMAGE)1725807499_pome.jpg\',\'ddd\'] (배열 형태의 텍스트여야 함, 배열의 요소 중 (IMAGE) 가 붙은 건 이미지 이므로 앞의 (IMAGE)를 떼고 남은 파일 이름을 api/imageDownload 에 요청을 보내서 이미지 링크로 받아와야 함)" )
+ *          )
+ *      )
+ * ),
+ *     @OA\Response(response="200", description="수정이 된 경우"),
+ *     @OA\Response(response="401", description="로그인된 정보와 글 작성자가 일치하지 않을 경우")
+ * )
+ **/
     public function edit(Post $post)
     {
         //
