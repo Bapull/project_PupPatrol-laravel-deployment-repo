@@ -212,6 +212,109 @@
                 }
             }
         },
+        "/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "로그인",
+                "description": "로그인",
+                "operationId": "42f77e072dec84b0e1094cca1228298e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "이메일",
+                                        "type": "string",
+                                        "example": "bapull@member.com"
+                                    },
+                                    "password": {
+                                        "description": "비밀번호",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "로그인이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "로그아웃",
+                "description": "로그아웃",
+                "operationId": "03afb12b342c2ea43bdc1de4f39e91a8",
+                "responses": {
+                    "200": {
+                        "description": "로그아웃이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "회원가입",
+                "description": "회원가입",
+                "operationId": "573de1fed352c1205a32c4d1b9877375",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "이메일",
+                                        "type": "string",
+                                        "example": "bapull@member.com"
+                                    },
+                                    "password": {
+                                        "description": "비밀번호",
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "name": {
+                                        "description": "닉네임",
+                                        "type": "string",
+                                        "example": "z지존w어둠z"
+                                    },
+                                    "profilePicture": {
+                                        "description": "api/imageUpload 프로필 사진 파일명",
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "birthday": {
+                                        "description": "생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-09-09"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "회원가입이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
         "/api/comments/{postId}": {
             "get": {
                 "tags": [
@@ -1090,12 +1193,61 @@
                     }
                 }
             }
+        },
+        "/api/user-update": {
+            "patch": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user데이터 수정",
+                "description": "현재 로그인 된 유저의 name, birthday, profile_picture을 requestBody에 있는 정보로 업데이트 한다. ",
+                "operationId": "d42975a34a06dda43a52069622c6e3fc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "birthday": {
+                                        "description": "바꾸고자 하는 생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-09-09"
+                                    },
+                                    "profilePicture": {
+                                        "description": "api/imageUpload의 결과로 반환된 프로필 사진의 파일명",
+                                        "type": "string",
+                                        "example": "1725465_셀카.jpg"
+                                    },
+                                    "name": {
+                                        "description": "바꾸고자 하는 닉네임",
+                                        "type": "string",
+                                        "example": "z지존x어둠z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인이 안 된 경우"
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "answer",
             "description": "answer"
+        },
+        {
+            "name": "user",
+            "description": "user"
         },
         {
             "name": "comment",

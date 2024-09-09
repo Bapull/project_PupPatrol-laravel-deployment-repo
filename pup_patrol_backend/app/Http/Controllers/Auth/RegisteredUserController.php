@@ -15,7 +15,7 @@ class RegisteredUserController extends Controller
 {
      /** 
  * @OA\post(
- *     path="/login",
+ *     path="/register",
  *     tags={"user"},
  *     summary="회원가입",
  *     description="회원가입",
