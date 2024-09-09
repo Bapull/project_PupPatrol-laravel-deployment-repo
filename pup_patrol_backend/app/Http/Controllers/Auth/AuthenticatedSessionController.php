@@ -37,9 +37,15 @@ class AuthenticatedSessionController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+  /** 
+ * @OA\post(
+ *     path="/logout",
+ *     tags={"user"},
+ *     summary="로그아웃",
+ *     description="로그아웃",
+ *     @OA\Response(response="200", description="로그아웃이 성공적으로 완료됨")
+ * )
+ **/
     public function destroy(Request $request): Response
     {
         Auth::guard('web')->logout();

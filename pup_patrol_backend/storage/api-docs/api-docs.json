@@ -1,0 +1,1651 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "pup_patrol",
+        "version": "1"
+    },
+    "paths": {
+        "/api/answers": {
+            "get": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "answers 테이블",
+                "description": "answers 테이블에 등록된 모든 데이터를 data라는 키를 가진 배열로 반환",
+                "operationId": "6ffc73781e9ca17d5917d27e50145b6b",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "answers 테이블에 데이터 추가",
+                "description": "(admin 계정만 가능) answers 테이블에 데이터를 추가함",
+                "operationId": "a1aa30cc6ce16b56a43129192929677d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "answerIsBig": {
+                                        "description": "대형견 인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 (1:True,  1이 아닌 모든 숫자:False, 0은 인식 못 함)"
+                                    },
+                                    "answerIsFluff": {
+                                        "description": "장묘종인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsWalking": {
+                                        "description": "운동이 많이 필요한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsSmart": {
+                                        "description": "지능이 높은 편인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsShyness": {
+                                        "description": "낯가림이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsBiting": {
+                                        "description": "입질이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsNuisance": {
+                                        "description": "치명적인 유전병이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsIndependent": {
+                                        "description": "독립심이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "answer이 성공적으로 추가됨"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            }
+        },
+        "/api/answers/{answer}": {
+            "get": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "파라미터로 넘어온 id를 가지는 특정 answer 데이터 조회",
+                "description": "파라미터로 넘어온 id를 가지는 특정 answer 데이터를 data라는 키를 가진 객체로 반환",
+                "operationId": "ca2bba03959ff3b6a7930a97f6c7859d",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "answer의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "한 강아지의 answer 데이터"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "answer데이터 수정",
+                "description": "(admin 계정만 가능) 한 개의 answer데이터를 수정함 ",
+                "operationId": "a05c164fa352557a2b9b1a4731b83dec",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "answer의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "answerIsBig": {
+                                        "description": "대형견 인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 (1:True,  1이 아닌 모든 숫자:False, 0은 인식 못 함)"
+                                    },
+                                    "answerIsFluff": {
+                                        "description": "장묘종인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsWalking": {
+                                        "description": "운동이 많이 필요한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsSmart": {
+                                        "description": "지능이 높은 편인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsShyness": {
+                                        "description": "낯가림이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsBiting": {
+                                        "description": "입질이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsNuisance": {
+                                        "description": "치명적인 유전병이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsIndependent": {
+                                        "description": "독립심이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "특정 answer 데이터 삭제",
+                "description": "(admin 계정만 가능) 하나의 answer을 삭제함",
+                "operationId": "1b089cc5726da63ca5e602bb4dab798c",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "강아지의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "answer 삭제에 성공한 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "answer"
+                ],
+                "summary": "answer데이터 수정",
+                "description": "(admin 계정만 가능) 한 개의 answer데이터를 수정함 ",
+                "operationId": "ec06a3d3751e7f274dc116ec0f957169",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "answer의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "answerIsBig": {
+                                        "description": "대형견 인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 (1:True,  1이 아닌 모든 숫자:False, 0은 인식 못 함)"
+                                    },
+                                    "answerIsFluff": {
+                                        "description": "장묘종인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsWalking": {
+                                        "description": "운동이 많이 필요한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsSmart": {
+                                        "description": "지능이 높은 편인지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsShyness": {
+                                        "description": "낯가림이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsBiting": {
+                                        "description": "입질이 심한지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsNuisance": {
+                                        "description": "치명적인 유전병이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    },
+                                    "answerIsIndependent": {
+                                        "description": "독립심이 있는지 아닌지",
+                                        "type": "boolean",
+                                        "example": " 1 or 5 "
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "로그인",
+                "description": "로그인",
+                "operationId": "42f77e072dec84b0e1094cca1228298e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "이메일",
+                                        "type": "string",
+                                        "example": "bapull@member.com"
+                                    },
+                                    "password": {
+                                        "description": "비밀번호",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "로그인이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "로그아웃",
+                "description": "로그아웃",
+                "operationId": "03afb12b342c2ea43bdc1de4f39e91a8",
+                "responses": {
+                    "200": {
+                        "description": "로그아웃이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "현재 로그인된 유저정보를 반환함",
+                "description": "유저의 name, profile_picture, email, role, birthday 를 반환함",
+                "operationId": "c77423552721cb43e8dbe72a099cf918",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "회원가입",
+                "description": "회원가입",
+                "operationId": "573de1fed352c1205a32c4d1b9877375",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "이메일",
+                                        "type": "string",
+                                        "example": "bapull@member.com"
+                                    },
+                                    "password": {
+                                        "description": "비밀번호",
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "name": {
+                                        "description": "닉네임",
+                                        "type": "string",
+                                        "example": "z지존w어둠z"
+                                    },
+                                    "profilePicture": {
+                                        "description": "api/imageUpload 프로필 사진 파일명",
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "birthday": {
+                                        "description": "생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-09-09"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "회원가입이 성공적으로 완료됨"
+                    }
+                }
+            }
+        },
+        "/sanctum/csrf-cookie": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "csrf 토큰을 발급함",
+                "description": "이 경로로 요청을 보내서 csrf 쿠키를 받은 후, httpOnly 쿠키로 저장하면 됨",
+                "operationId": "752d421fc8b3188f0b69d80fc120681f",
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/comments/{postId}": {
+            "get": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "특정 게시글의 댓글 반환",
+                "description": "파라미터로 받은 postId와 comments 테이블의 postId열이 일치하는 정보들을 data라는 키를 가진 배열로 반환",
+                "operationId": "d6810ca6c68ef6a0cd06244459be433d",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "post의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/comments": {
+            "post": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "댓글 추가",
+                "description": "comments 테이블에 데이터를 추가함",
+                "operationId": "300619a0a4003920aafe960e45688102",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "commentPostId": {
+                                        "description": "댓글이 달린 게시글 id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "commentContent": {
+                                        "description": "댓글 내용",
+                                        "type": "string",
+                                        "example": "안녕하세요"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "answer이 성공적으로 추가됨"
+                    }
+                }
+            }
+        },
+        "/api/comments/{comment}": {
+            "get": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "파라미터로 넘어온 id를 가지는 특정 comment 데이터 조회",
+                "description": "파라미터로 넘어온 id를 가지는 특정 comment 데이터를 data라는 키를 가진 객체로 반환",
+                "operationId": "df604464ebd8be1727bb39c2711e2f03",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "comment의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "특정 댓글 데이터"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "comment 데이터 수정",
+                "description": "로그인 한 정보와 댓글 작성자가 같다면 comment 데이터를 수정함 ",
+                "operationId": "11551b83dcd65f7f079adf59f8c0348e",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "comment의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "commentPostId": {
+                                        "description": "댓글이 달린 게시글 id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "commentContent": {
+                                        "description": "댓글 내용",
+                                        "type": "string",
+                                        "example": "안녕하세요"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 댓글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "특정 comment 데이터 삭제",
+                "description": "로그인한 정보와 댓글 작성자가 같다면 comment를 삭제함",
+                "operationId": "e2e2b84a31c09628af8301e2ab9b209c",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "comment의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "comment 삭제에 성공한 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 댓글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "comment 데이터 수정",
+                "description": "로그인 한 정보와 댓글 작성자가 같다면 comment 데이터를 수정함 ",
+                "operationId": "2f82e3c15a5118051615b859ad80d443",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "comment의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "commentPostId": {
+                                        "description": "댓글이 달린 게시글 id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "commentContent": {
+                                        "description": "댓글 내용",
+                                        "type": "string",
+                                        "example": "안녕하세요"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 댓글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            }
+        },
+        "/api/dogs": {
+            "get": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "로그인된 계정에 등록된 반려견 전부 조회",
+                "description": "현재 로그인 된 사람이 등록한 반려견의 정보를 data라는 키를 가진 배열로 반환",
+                "operationId": "25cd015af7dc1f1288bc1c6eef66f191",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "dog에 데이터 추가",
+                "description": "dog에 데이터를 추가함",
+                "operationId": "4880742d3cdf4092b2a220082d614c24",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dogName": {
+                                        "description": "반려견 이름",
+                                        "type": "string",
+                                        "example": "뽀삐"
+                                    },
+                                    "dogBreed": {
+                                        "description": "반려견의 종",
+                                        "type": "string",
+                                        "example": "푸들"
+                                    },
+                                    "dogBirthDate": {
+                                        "description": "반려견의 생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-3-2"
+                                    },
+                                    "dogPhotoName": {
+                                        "description": "api/imageUpload 의 응답으로 나온 파일명",
+                                        "type": "string",
+                                        "example": "172834_뽀삐사진.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "반려견 정보가 성공적으로 추가됨"
+                    }
+                }
+            }
+        },
+        "/api/dogs/{dog}": {
+            "get": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "반려견 조회",
+                "description": "파라미터로 받은 반려견의 id가 현재 로그인 된 사람이 등록한게 맞다면 해당 반려견 객체를 리턴함",
+                "operationId": "08afb5ec931c38605d5610f8cf0fa85d",
+                "parameters": [
+                    {
+                        "name": "dog",
+                        "in": "path",
+                        "description": "이용자가 등록한 반려견의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "401": {
+                        "description": "본인의 반려견이 아님"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "반려견 데이터 수정",
+                "description": "파라미터로 넘어온 id가 로그인 한 사람이 등록한 반려견이 맞다면 반려견의 데이터를 수정함 ",
+                "operationId": "1d4ac695c7350013c3edb645f5d8059b",
+                "parameters": [
+                    {
+                        "name": "dag",
+                        "in": "path",
+                        "description": "반려견의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dogName": {
+                                        "description": "반려견 이름",
+                                        "type": "string",
+                                        "example": "뽀삐"
+                                    },
+                                    "dogBreed": {
+                                        "description": "반려견의 종",
+                                        "type": "string",
+                                        "example": "푸들"
+                                    },
+                                    "dogBirthDate": {
+                                        "description": "반려견의 생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-3-2"
+                                    },
+                                    "dogPhotoName": {
+                                        "description": "api/imageUpload 의 응답으로 나온 파일명",
+                                        "type": "string",
+                                        "example": "172834_뽀삐사진.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "본인의 반려견이 아님"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "특정 dog 데이터 삭제",
+                "description": "하나의 반려견 정보를 삭제함",
+                "operationId": "b316bf22a9ac84d37b1396a412db8ff0",
+                "parameters": [
+                    {
+                        "name": "dog",
+                        "in": "path",
+                        "description": "파라미터로 넘어온 id가 로그인 한 사람이 등록한 반려견이 맞다면 반려견의 데이터를 삭제함 ",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "데이터 삭제에 성공한 경우"
+                    },
+                    "401": {
+                        "description": "본인의 반려견이 아님"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "dog"
+                ],
+                "summary": "반려견 데이터 수정",
+                "description": "파라미터로 넘어온 id가 로그인 한 사람이 등록한 반려견이 맞다면 반려견의 데이터를 수정함 ",
+                "operationId": "7a85bf04300420fd17b992089f1b602b",
+                "parameters": [
+                    {
+                        "name": "dag",
+                        "in": "path",
+                        "description": "반려견의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dogName": {
+                                        "description": "반려견 이름",
+                                        "type": "string",
+                                        "example": "뽀삐"
+                                    },
+                                    "dogBreed": {
+                                        "description": "반려견의 종",
+                                        "type": "string",
+                                        "example": "푸들"
+                                    },
+                                    "dogBirthDate": {
+                                        "description": "반려견의 생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-3-2"
+                                    },
+                                    "dogPhotoName": {
+                                        "description": "api/imageUpload 의 응답으로 나온 파일명",
+                                        "type": "string",
+                                        "example": "172834_뽀삐사진.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "본인의 반려견이 아님"
+                    }
+                }
+            }
+        },
+        "/api/imageUpload": {
+            "post": {
+                "tags": [
+                    "image"
+                ],
+                "summary": "s3버킷에 이미지 추가",
+                "description": "s3버킷에 이미지를 추가하고 추가된 파일명을 반환함",
+                "operationId": "c9ee5974e9743b088608600d320673f9",
+                "parameters": [
+                    {
+                        "name": "folder",
+                        "in": "header",
+                        "description": "이미지가 저장될 폴더명",
+                        "required": true,
+                        "schema": {
+                            "type": "sting"
+                        },
+                        "example": "pup-patrol-information-image"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "image": {}
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "이미지가 s3버킷에 업로드 됨"
+                    },
+                    "401": {
+                        "description": "권한 없음"
+                    }
+                }
+            }
+        },
+        "/api/imageDownload": {
+            "get": {
+                "tags": [
+                    "image"
+                ],
+                "summary": "파일이름과 폴더이름을 사용해서 이미지 url을 받아옴",
+                "description": "파일이름은 쿼리로 폴더이름은 헤더에서 받음",
+                "operationId": "3198ec3ef6fa16cf28cf452a8f195a5c",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "query",
+                        "description": "파일명",
+                        "required": true,
+                        "schema": {
+                            "type": "sting"
+                        },
+                        "example": "172394_프로필사진.jpg"
+                    },
+                    {
+                        "name": "folder",
+                        "in": "header",
+                        "description": "폴더명",
+                        "required": true,
+                        "schema": {
+                            "type": "sting"
+                        },
+                        "example": "pup-patrol-information-image"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/imageDelete": {
+            "delete": {
+                "tags": [
+                    "image"
+                ],
+                "summary": "s3버킷에 이미지 삭제",
+                "description": "s3버킷에 이미지를 삭제함",
+                "operationId": "24cfc63a652da5b87c2a3ddb250ba0bc",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "query",
+                        "description": "파일명",
+                        "required": true,
+                        "schema": {
+                            "type": "sting"
+                        },
+                        "example": "172394_프로필사진.jpg"
+                    },
+                    {
+                        "name": "folder",
+                        "in": "header",
+                        "description": "폴더명",
+                        "required": true,
+                        "schema": {
+                            "type": "sting"
+                        },
+                        "example": "pup-patrol-information-image"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "이미지가 s3버킷에서 삭제됨"
+                    },
+                    "401": {
+                        "description": "권한 없음"
+                    }
+                }
+            }
+        },
+        "/api/informations": {
+            "get": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "informations 테이블",
+                "description": "informations 테이블에 등록된 모든 데이터를 data라는 키를 가진 배열로 반환",
+                "operationId": "3e80335d2b00defbcc436f0a8c98d8e2",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "informations 테이블에 데이터 추가",
+                "description": "(admin 계정만 가능) informations 테이블에 데이터를 추가함",
+                "operationId": "feb3c3058246ec9741b13229ab864342",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "informationDogName": {
+                                        "description": "강아지 이름",
+                                        "type": "string",
+                                        "example": "골든 리트리버"
+                                    },
+                                    "informationDogCharacter": {
+                                        "description": "강아지 성격",
+                                        "type": "string",
+                                        "example": "온화하고 영리함"
+                                    },
+                                    "informationMinSize": {
+                                        "description": "평균 사이즈 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "56"
+                                    },
+                                    "informationMaxSize": {
+                                        "description": "평균 사이즈 범위의 끝 값",
+                                        "type": "integer",
+                                        "example": "61"
+                                    },
+                                    "informationMinCost": {
+                                        "description": "평균 분양가 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "informationMaxCost": {
+                                        "description": "평균 분양가 범위의 끝 값 ",
+                                        "type": "integer",
+                                        "example": "80"
+                                    },
+                                    "informationDogText": {
+                                        "description": "강아지 설명",
+                                        "type": "string",
+                                        "example": "골든 리트리버는 온화하며 특히 순종적이고 영리합니다. 사람에게 부드럽고 우호적입니다."
+                                    },
+                                    "informationDogGeneticillness": {
+                                        "description": "유전병 정보",
+                                        "type": "string",
+                                        "example": "고관절 이형성증, 백내장, 암"
+                                    },
+                                    "informationCaution": {
+                                        "description": "주의사항",
+                                        "type": "string",
+                                        "example": "사람에게는 착하지만, 다른 개들에게는 사나울 수 있습니다."
+                                    },
+                                    "informationImageName": {
+                                        "description": "이미지 파일 이름",
+                                        "type": "string",
+                                        "example": "Golden Retriever.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "information이 성공적으로 추가됨"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            }
+        },
+        "/api/informations/{information}": {
+            "get": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "파라미터로 넘어온 id를 가지는 특정 information 데이터 조회",
+                "description": "파라미터로 넘어온 id를 가지는 특정 information 데이터를 data라는 키를 가진 객체로 반환",
+                "operationId": "723e948e6e8caa9131225d15fe8bbdab",
+                "parameters": [
+                    {
+                        "name": "information",
+                        "in": "path",
+                        "description": "information의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "한 강아지의 information 데이터"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "information데이터 수정",
+                "description": "(admin 계정만 가능) 한 개의 information데이터를 수정함 ",
+                "operationId": "ffa6dbb2fd63839551ae39b0be320a43",
+                "parameters": [
+                    {
+                        "name": "information",
+                        "in": "path",
+                        "description": "information의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "informationDogName": {
+                                        "description": "강아지 이름",
+                                        "type": "string",
+                                        "example": "골든 리트리버"
+                                    },
+                                    "informationDogCharacter": {
+                                        "description": "강아지 성격",
+                                        "type": "string",
+                                        "example": "온화하고 영리함"
+                                    },
+                                    "informationMinSize": {
+                                        "description": "평균 사이즈 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "56"
+                                    },
+                                    "informationMaxSize": {
+                                        "description": "평균 사이즈 범위의 끝 값",
+                                        "type": "integer",
+                                        "example": "61"
+                                    },
+                                    "informationMinCost": {
+                                        "description": "평균 분양가 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "informationMaxCost": {
+                                        "description": "평균 분양가 범위의 끝 값 ",
+                                        "type": "integer",
+                                        "example": "80"
+                                    },
+                                    "informationDogText": {
+                                        "description": "강아지 설명",
+                                        "type": "string",
+                                        "example": "골든 리트리버는 온화하며 특히 순종적이고 영리합니다. 사람에게 부드럽고 우호적입니다."
+                                    },
+                                    "informationDogGeneticillness": {
+                                        "description": "유전병 정보",
+                                        "type": "string",
+                                        "example": "고관절 이형성증, 백내장, 암"
+                                    },
+                                    "informationCaution": {
+                                        "description": "주의사항",
+                                        "type": "string",
+                                        "example": "사람에게는 착하지만, 다른 개들에게는 사나울 수 있습니다."
+                                    },
+                                    "informationImageName": {
+                                        "description": "이미지 파일 이름",
+                                        "type": "string",
+                                        "example": "Golden Retriever.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "특정 information 데이터 삭제",
+                "description": "하나의 information을 삭제함",
+                "operationId": "c69464f4e9cb00098462eca5d5b88502",
+                "parameters": [
+                    {
+                        "name": "information",
+                        "in": "path",
+                        "description": "강아지의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "information 삭제에 성공한 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "information"
+                ],
+                "summary": "information데이터 수정",
+                "description": "(admin 계정만 가능) 한 개의 information데이터를 수정함 ",
+                "operationId": "1ee7f4acfe85e06b97bd9e0b1e7a7e4c",
+                "parameters": [
+                    {
+                        "name": "information",
+                        "in": "path",
+                        "description": "information의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "informationDogName": {
+                                        "description": "강아지 이름",
+                                        "type": "string",
+                                        "example": "골든 리트리버"
+                                    },
+                                    "informationDogCharacter": {
+                                        "description": "강아지 성격",
+                                        "type": "string",
+                                        "example": "온화하고 영리함"
+                                    },
+                                    "informationMinSize": {
+                                        "description": "평균 사이즈 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "56"
+                                    },
+                                    "informationMaxSize": {
+                                        "description": "평균 사이즈 범위의 끝 값",
+                                        "type": "integer",
+                                        "example": "61"
+                                    },
+                                    "informationMinCost": {
+                                        "description": "평균 분양가 범위의 시작 값",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "informationMaxCost": {
+                                        "description": "평균 분양가 범위의 끝 값 ",
+                                        "type": "integer",
+                                        "example": "80"
+                                    },
+                                    "informationDogText": {
+                                        "description": "강아지 설명",
+                                        "type": "string",
+                                        "example": "골든 리트리버는 온화하며 특히 순종적이고 영리합니다. 사람에게 부드럽고 우호적입니다."
+                                    },
+                                    "informationDogGeneticillness": {
+                                        "description": "유전병 정보",
+                                        "type": "string",
+                                        "example": "고관절 이형성증, 백내장, 암"
+                                    },
+                                    "informationCaution": {
+                                        "description": "주의사항",
+                                        "type": "string",
+                                        "example": "사람에게는 착하지만, 다른 개들에게는 사나울 수 있습니다."
+                                    },
+                                    "informationImageName": {
+                                        "description": "이미지 파일 이름",
+                                        "type": "string",
+                                        "example": "Golden Retriever.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "관리자 계정이 아닌 경우"
+                    }
+                }
+            }
+        },
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "posts 테이블",
+                "description": "posts 테이블에 등록된 모든 데이터를 data라는 키를 가진 배열로 반환",
+                "operationId": "e9eaf7df702a94f4443677bd1a36cfe6",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "posts 테이블에 데이터 추가",
+                "description": "posts 테이블에 데이터를 추가함",
+                "operationId": "4a657e51a0066c64781851f2fd2651e2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "postTitle": {
+                                        "description": "게시글 제목",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "postContent": {
+                                        "description": "게시글 내용",
+                                        "type": "string",
+                                        "example": " [\\'ddd\\',\\'(IMAGE)1725807499_pome.jpg\\',\\'ddd\\'] (배열 형태의 텍스트여야 함, 배열의 요소 중 (IMAGE) 가 붙은 건 이미지 이므로 앞의 (IMAGE)를 떼고 남은 파일 이름을 api/imageDownload 에 요청을 보내서 이미지 링크로 받아와야 함)"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "게시글이 성공적으로 추가됨"
+                    }
+                }
+            }
+        },
+        "/api/posts/{post}": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "파라미터로 넘어온 id를 가지는 특정 post 데이터 조회",
+                "description": "파라미터로 넘어온 id를 가지는 특정 post 데이터를 data라는 키를 가진 객체로 반환",
+                "operationId": "d3910995cb542d02254c9fc6133cc10c",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "post의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "하나의 post 데이터"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "post데이터 수정",
+                "description": "로그인 한 정보와 글 작성자가 같다면 post데이터를 수정함 ",
+                "operationId": "4897f3aff4c2ef880950782e3669baf4",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "post의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "postTitle": {
+                                        "description": "게시글 제목",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "postContent": {
+                                        "description": "게시글 내용",
+                                        "type": "string",
+                                        "example": "[\\'ddd\\',\\'(IMAGE)1725807499_pome.jpg\\',\\'ddd\\'] (배열 형태의 텍스트여야 함, 배열의 요소 중 (IMAGE) 가 붙은 건 이미지 이므로 앞의 (IMAGE)를 떼고 남은 파일 이름을 api/imageDownload 에 요청을 보내서 이미지 링크로 받아와야 함)"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "특정 post 데이터 삭제",
+                "description": "로그인한 정보와 글 작성자가 같다면 post를 삭제함",
+                "operationId": "995630fb8f7510fb391745db0c073d23",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "post의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "post 삭제에 성공한 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "post데이터 수정",
+                "description": "로그인 한 정보와 글 작성자가 같다면 post데이터를 수정함 ",
+                "operationId": "296913e708cb55c1da7a87b0978ac920",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "post의 아이디",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "postTitle": {
+                                        "description": "게시글 제목",
+                                        "type": "string",
+                                        "example": "title"
+                                    },
+                                    "postContent": {
+                                        "description": "게시글 내용",
+                                        "type": "string",
+                                        "example": "[\\'ddd\\',\\'(IMAGE)1725807499_pome.jpg\\',\\'ddd\\'] (배열 형태의 텍스트여야 함, 배열의 요소 중 (IMAGE) 가 붙은 건 이미지 이므로 앞의 (IMAGE)를 떼고 남은 파일 이름을 api/imageDownload 에 요청을 보내서 이미지 링크로 받아와야 함)"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인된 정보와 글 작성자가 일치하지 않을 경우"
+                    }
+                }
+            }
+        },
+        "/api/questions": {
+            "get": {
+                "tags": [
+                    "question"
+                ],
+                "summary": "questions 테이블 조회",
+                "description": "questions 테이블의 모든 데이터를 data라는 키를 가진 배열로 반환",
+                "operationId": "e64d3c7a745fc05662a4a1e1eb3d96ab",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/questions/{question}": {
+            "get": {
+                "tags": [
+                    "question"
+                ],
+                "summary": "특정 question 데이터 조회",
+                "description": "파라미터로 받은 id를 가지는 question 객체를 data라는 키를 가진 객체로 반환",
+                "operationId": "8bc2cdefaa6d0469ec03ceb8352077a5",
+                "parameters": [
+                    {
+                        "name": "question",
+                        "in": "path",
+                        "description": "question의 id",
+                        "required": true,
+                        "schema": {
+                            "type": "json"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "한 개의 question 데이터"
+                    }
+                }
+            }
+        },
+        "/api/user-update": {
+            "patch": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user데이터 수정",
+                "description": "현재 로그인 된 유저의 name, birthday, profile_picture을 requestBody에 있는 정보로 업데이트 한다. ",
+                "operationId": "d42975a34a06dda43a52069622c6e3fc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "birthday": {
+                                        "description": "바꾸고자 하는 생일",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-09-09"
+                                    },
+                                    "profilePicture": {
+                                        "description": "api/imageUpload의 결과로 반환된 프로필 사진의 파일명",
+                                        "type": "string",
+                                        "example": "1725465_셀카.jpg"
+                                    },
+                                    "name": {
+                                        "description": "바꾸고자 하는 닉네임",
+                                        "type": "string",
+                                        "example": "z지존x어둠z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "수정이 된 경우"
+                    },
+                    "401": {
+                        "description": "로그인이 안 된 경우"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "answer",
+            "description": "answer"
+        },
+        {
+            "name": "user",
+            "description": "user"
+        },
+        {
+            "name": "comment",
+            "description": "comment"
+        },
+        {
+            "name": "dog",
+            "description": "dog"
+        },
+        {
+            "name": "image",
+            "description": "image"
+        },
+        {
+            "name": "information",
+            "description": "information"
+        },
+        {
+            "name": "post",
+            "description": "post"
+        },
+        {
+            "name": "question",
+            "description": "question"
+        }
+    ]
+}
